@@ -141,6 +141,71 @@ function Cowsay() {
 
   Print-Cow $eyes $tongue
 }
+function Santacowsay() {
+  $params
+
+  $messageArgs = @()
+  $eyes = "oo"
+  $tongue = " "
+
+  foreach($arg in $args) {
+
+    if($arg -eq "-v" -or $arg -eq "-version") {
+      Print-Version
+      return
+    }
+
+    if($modes.keys -contains $arg) {
+      $eyes   = $modes[$arg][0]
+      $tongue = $modes[$arg][1]
+      continue
+    }
+
+    $messageArgs += $arg
+  }
+
+  $inputList = @($input)
+  if ($inputList.Count -eq 0) {
+    $params = ,$messageArgs
+  } else {
+    $params = ,$messageArgs +@($inputList)
+  }
+
+  $message = [string[]]$params
+
+  Print-MessageBubble($message) 
+
+  Print-Santa-Cow $eyes $tongue
+}
+
+function Catsay() {
+  $params
+
+  $messageArgs = @()
+
+  foreach($arg in $args) {
+
+    if($arg -eq "-v" -or $arg -eq "-version") {
+      Print-Version
+      return
+    }
+
+    $messageArgs += $arg
+  }
+
+  $inputList = @($input)
+  if ($inputList.Count -eq 0) {
+    $params = ,$messageArgs
+  } else {
+    $params = ,$messageArgs +@($inputList)
+  }
+
+  $message = [string[]]$params
+
+  Print-MessageBubble($message) 
+
+  Print-Cat
+}
 
 # Private
 
@@ -166,10 +231,51 @@ function Print-Cow($eyes="oo", $tongue=" ") {
   Write-Output "          $tongue   ||----w |   "
   Write-Output "              ||     ||   "
 }
+function Print-Santa-Cow($eyes="oo", $tongue=" ") {
+  Write-Output "      \     .-`"`"-.            "
+  Write-Output "       \   /,..___\          "
+  Write-Output "        \ () {_____}            "
+  Write-Output "         \    ^__^             "
+  Write-Output "          \   ($eyes)\________    "
+  Write-Output "              (__)\        )\/\"
+  Write-Output "               $tongue   ||----w |   "
+  Write-Output "                   ||     ||   "
+}
+function Print-Cat(){
+  Write-Output "      \                                  _"
+  Write-Output "       \                                | \"
+  Write-Output "        \                               | |"
+  Write-Output "         \                              | |"
+  Write-Output "          \        |\                   | |"
+  Write-Output "           \      /, ~\                / /"
+  Write-Output "            \    X     ``-.....-------./ /"
+  Write-Output "                  ~-. ~  ~              |"
+  Write-Output "                     \             /    |"
+  Write-Output "                      \  /_     ___\   /"
+  Write-Output "                      | /\ ~~~~~   \ |"
+  Write-Output "                      | | \        || |"
+  Write-Output "                      | |\ \       || )"
+  Write-Output "                     (_/ (_/      ((_/"
+}
 
+#Artwork by Marcin Glinski asciiart.eu/animals/cats
+function Print-Cat2(){
+  Write-Output "       \                         .-."
+  Write-Output "        \                       / /"
+  Write-Output "         \                     / |"
+  Write-Output "          \      |\     ._ ,-`"`"  ``."
+  Write-Output "           \     | |,,_/  7        ;"
+  Write-Output "            \  ``;=     ,=(     ,  /"
+  Write-Output "             \  |``q  q  `` |    \_,|"
+  Write-Output "               .=; <> _ ; /  ,/'/ |"
+  Write-Output "              ';|\,j_ \;=\ ,/   ``-'"
+  Write-Output "                  ``--'_|\  )"
+  Write-Output "                 ,' | /  ;'"
+  Write-Output "                (,,/ (,,/      "
+}
 function Print-Version() {
  Print-MessageBubble("Posh-Cowsay version $version") 
- Print-Cow
+ Print-Cat
 }
 
 # Helper Functions
@@ -280,5 +386,7 @@ function Determine-MessageBubbleDelimiters($lineNumber, $totalNumberOfLines) {
 
 # Exports
 Export-ModuleMember Cowsay
+Export-ModuleMember Catsay
+Export-ModuleMember Santacowsay
 Export-ModuleMember Split-Word
 Export-ModuleMember Split-Message
