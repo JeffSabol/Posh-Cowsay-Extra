@@ -1,6 +1,6 @@
 Posh-Cowsay - Cowsay for Windows Powershell
 ===========================================
-A shell cannot be called civilised until it has a talking cow.
+A shell cannot be called civilised until it has a talking cow... with a santa hat and a friend cat.
 
      _______________________________
     < For POSH users with Unix envy >
@@ -10,6 +10,18 @@ A shell cannot be called civilised until it has a talking cow.
              (__)\        )\/\
                   ||----w |   
                   ||     ||   
+     _____
+    < Yes >
+     -----
+      \     .-""-.
+       \   /,..___\
+        \ () {_____}
+         \    ^__^
+          \   (oo)\________
+              (__)\        )\/\
+                   ||----w |
+                   ||     ||
+                  
 
 Based on Tony Monroe's original Unix terminal program cowsay:
 
@@ -17,11 +29,23 @@ http://www.nog.net/~tony/warez/cowsay-3.03.tar.gz
 
 Usage
 =====
-Posh-Cowsay exposes a single function *cowsay*. Any non-option args passed to cowsay are treated as the message:
+> Catsay Hello World
 
-    > cowsay The build is broken
+> Santacowsay Ho ho ho
 
-For more examples see the built-in Powershell help:
+> Cowsay -b Borg
+
+> Cowsay -d Dead
+
+> Cowsay -g Greedy
+
+> Cowsay -p Paranoid
+
+> Cowsay -s Borg
+
+> Cowsay -y Youthful
+
+For examples see the built-in Powershell help:
 
     > get-help cowsay -examples
 
